@@ -31,3 +31,16 @@ eksctl get fargateprofile --cluster twn-exercise-11
 **The new cluster and the Fargate profile:**
 
 ![The new cluster and the fargate profile.](Exercise-1-The-Cluster-and-Fargate-Profile.jpg)
+
+## Exercise 2
+
+**I installed MySql from Helm Chart:**
+
+```bash
+cd ~/Repositories/TWN-DevOps-Bootcamp-Exercises-11-EKS/kubernetes
+
+helm install mysql oci://registry-1.docker.io/bitnamicharts/mysql -n twn-exercise-11 --create-namespace -f mysql-helm-values.yaml
+
+helm -n twn-exercise-11 list
+kubectl -n twn-exercise-11 get all
+```
