@@ -14,13 +14,14 @@ auth:
   username: "imre"
   password: "t5z6u7i8"
 
+volumePermissions:
+  enabled: true
+
 primary:
   persistence:
-    storageClass: standard
-    size: 1Gi
+    enabled: false
 
 secondary:
   replicaCount: 2
   persistence:
-    storageClass: standard
-    size: 1Gi
+    enabled: false

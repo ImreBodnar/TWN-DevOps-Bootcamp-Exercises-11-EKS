@@ -20,11 +20,11 @@ eksctl version
 **Next I created the cluster itself:**
 
 ```bash
-eksctl create cluster --name=twn-exercise-11 --node-type=t3.micro --nodes=3 --nodegroup-name=twn-e11-nodes --region=eu-north-1 --kubeconfig=./kubeconfig.twn-e11.yaml
+eksctl create cluster --name=twn-exercise-11 --node-type=t3.small --nodes=3 --nodegroup-name=twn-e11-nodes --region=eu-north-1 --kubeconfig=./kubeconfig.twn-e11.yaml
 export KUBECONFIG=/home/imre/kubeconfig.twn-e11.yaml
-kubectl get node
-
 eksctl create fargateprofile --name twn-e11-fargate --namespace twn-e11 --cluster twn-exercise-11
+
+kubectl get node
 eksctl get fargateprofile --cluster twn-exercise-11
 ```
 
@@ -39,8 +39,23 @@ eksctl get fargateprofile --cluster twn-exercise-11
 ```bash
 cd ~/Repositories/TWN-DevOps-Bootcamp-Exercises-11-EKS/kubernetes
 
-helm install mysql oci://registry-1.docker.io/bitnamicharts/mysql -n twn-exercise-11 --create-namespace -f mysql-helm-values.yaml
+helm install mysql oci://registry-1.docker.io/bitnamicharts/mysql -f mysql-helm-values.yaml
 
-helm -n twn-exercise-11 list
-kubectl -n twn-exercise-11 get all
+helm list
+kubectl get all
 ```
+
+**I deployed PhpMyAdmin:**
+
+```bash
+kubectl apply -f app-configmap.yaml
+kubectl apply -f phpmyadmin-deployment.yaml
+
+kubectl get all
+
+kubectl port-forward service/phpmyadmin-service 8081:8081
+```
+
+**The port-forwarded PhpMyAdmin page in browser:**
+
+![The port-forwarded PhpMyAdmin page in browser.](Exercise-2-The-PhpMyAdmin-in-Browser.jpg)
