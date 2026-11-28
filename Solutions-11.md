@@ -59,3 +59,33 @@ kubectl port-forward service/phpmyadmin-service 8081:8081
 **The port-forwarded PhpMyAdmin page in browser:**
 
 ![The port-forwarded PhpMyAdmin page in browser.](Exercise-2-The-PhpMyAdmin-in-Browser.jpg)
+
+## Exercise 3
+
+**At first I created a new namespace for the Fargate profile:**
+
+```bash
+kubectl create namespace twn-e11
+```
+
+**After that I needed to create a secret for pulling the app's image from my private repository:**
+
+```bash
+kubectl create secret docker-registry dockerhub-secret --docker-email=bodnar.imre.85@gmail.com --docker-username=bodnarimredocker --docker-password=2FYkpA2QCyjmTev --docker-server=https://index.docker.io/v1/ -n twn-e11
+```
+
+**Lastly I deployed the remaining parts of the application:**
+
+```bash
+kubectl apply -f app-configmap.yaml -n twn-e11
+kubectl apply -f app-secret.yaml -n twn-e11
+kubectl apply -f app-deployment.yaml -n twn-e11
+kubectl apply -f app-service.yaml -n twn-e11
+
+kubectl get all -n twn-e11
+kubectl get secret,configmap -n twn-e11
+```
+
+**All the deployed components:**
+
+![All the deployed components.](Exercise-3-The-Deployed-Parts.jpg)
