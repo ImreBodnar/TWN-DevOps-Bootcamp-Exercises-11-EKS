@@ -71,7 +71,7 @@ kubectl create namespace twn-e11
 **After that I needed to create a secret for pulling the app's image from my private repository:**
 
 ```bash
-kubectl create secret docker-registry dockerhub-secret --docker-email=bodnar.imre.85@gmail.com --docker-username=bodnarimredocker --docker-password=2FYkpA2QCyjmTev --docker-server=https://index.docker.io/v1/ -n twn-e11
+kubectl create secret docker-registry dockerhub-secret --docker-email=DOCKER_MAIL_ADDRESS --docker-username=bodnarimredocker --docker-password=DOCKER_PASSWORD --docker-server=https://index.docker.io/v1/ -n twn-e11
 ```
 
 **Lastly I deployed the remaining parts of the application:**
